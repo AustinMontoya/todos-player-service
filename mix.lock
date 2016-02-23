@@ -1,0 +1,1 @@
+%{"thrift": {:git, "https://github.com/pinterest/elixir-thrift.git", "335f7e742f64461122ed414245ae467838aaaae9", [submodules: true]}}
