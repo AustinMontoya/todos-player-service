@@ -11,7 +11,7 @@ existing_database = body
   |> Enum.find(fn(name) -> name == database_name end)
 
 if existing_database != nil do
-  IO.puts("Deleting existing datbase...")
+  IO.puts("Deleting existing database...")
   HTTPoison.delete!(Path.join(couch_url, database_name))
 end
 
