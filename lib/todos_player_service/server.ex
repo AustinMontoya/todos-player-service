@@ -6,7 +6,6 @@ defmodule TodosPlayerService.Server do
   structs: TodosPlayerService.Models,
   functions: [createPlayer: &TodosPlayerService.Handler.create_player/0,
               todoCompleted: &TodosPlayerService.Handler.todo_completed/2,
-              getPlayer: &TodosPlayerService.Handler.get_player/1
-  ],
+              getPlayer: &TodosPlayerService.Handler.get_player/1],
   server: @config[:server]
 end

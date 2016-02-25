@@ -2,6 +2,7 @@ defmodule TodosPlayerService.Handler do
   use GenServer
   alias TodosPlayerService.{Models, Database}
 
+  @private_model_fields [:_id, :_rev]
   @xp_per_task_completed 10
 
   def start_link(opts \\ []) do
@@ -16,12 +17,13 @@ defmodule TodosPlayerService.Handler do
     Database.get!(player_id)
     |> Models.Player.new()
     |> Map.merge(%{id: player_id})
+    |> Map.drop(@private_model_fields)
   end
 
   def create_player() do
     player = Models.Player.new
     %{ id: id } = Database.post!(player)
-    %{ player | id: id }
+    %{ player | id: id } |> Map.drop(@private_model_fields)
   end
 
   def todo_completed(player_id, todo_id) do

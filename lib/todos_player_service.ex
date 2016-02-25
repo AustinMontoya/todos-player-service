@@ -12,6 +12,7 @@ defmodule TodosPlayerService do
 
     children = [
       worker(TodosPlayerService.Server, []),
+      Plug.Adapters.Cowboy.child_spec(:http, TodosPlayerService.HttpRouter, []),
       worker(TodosPlayerService.Handler, []),
       worker(TodosPlayerService.Database, [couch_url, database_name])
     ]

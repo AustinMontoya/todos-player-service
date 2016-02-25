@@ -14,13 +14,15 @@ defmodule TodosPlayerService.Mixfile do
   end
 
   def application do
-    [applications: [:logger, :httpoison],
+    [applications: [:logger, :httpoison, :cowboy, :plug],
     mod: {TodosPlayerService, []}]
   end
 
   defp deps do
     [{:riffed, github: "pinterest/riffed", tag: "1.0.0", submodules: true},
      {:httpoison, "~> 0.8.0"},
-     {:poison, "~> 2.1.0"}]
+     {:poison, "~> 2.1.0"},
+     {:plug, "~> 1.1.2"},
+     {:cowboy, "~> 1.0.0"}]
   end
 end
