@@ -3,10 +3,22 @@ defmodule TodosPlayerService.HandlerTest do
 
   alias TodosPlayerService.{Models, Handler, Database}
 
-  test "New player defaults" do
-    player = Models.Player.new()
-    assert player.xp == 0
+  test "Getting a player" do
+    player = Models.Player.new(%{level: 10, xp: 200, completed_todos: ["123"]})
+    %{ id: player_id } = Database.post!(player)
+
+    fetched_player = Handler.get_player(player_id)
+    assert fetched_player.level == player.level
+    assert fetched_player.xp == player.xp
+    assert fetched_player.completed_todos == player.completed_todos
+  end
+
+  test "Creating a player" do
+    %{ id: player_id } = Handler.create_player()
+
+    player = Database.get!(player_id)
     assert player.level == 1
+    assert player.xp == 0
     assert player.completed_todos == []
   end
 

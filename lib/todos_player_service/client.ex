@@ -8,5 +8,5 @@ defmodule TodosPlayerService.Client do
     framed: true
   ],
   service: :todos_player_service_thrift,
-  import: [:todoCompleted]
+  import: [:todoCompleted, :createPlayer, :getPlayer]
 end

@@ -1,5 +1,4 @@
 defmodule TodosPlayerService.Database do
-
   def start_link(couch_url, database_name) do
     db_url = Path.join(couch_url, database_name)
     Agent.start_link(fn -> {db_url} end, name: __MODULE__)

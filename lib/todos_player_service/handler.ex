@@ -17,6 +17,12 @@ defmodule TodosPlayerService.Handler do
     |> Models.Player.new
   end
 
+  def create_player() do
+    player = Models.Player.new
+    %{ id: id } = Database.post!(player)
+    %{ player | id: id }
+  end
+
   def todo_completed(player_id, todo_id) do
     player = get_player(player_id)
     new_xp = @xp_per_task_completed + player.xp
