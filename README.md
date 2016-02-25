@@ -35,7 +35,7 @@ Creates a new player
 
 ### `POST /players/:id/completed_todos`
 
-Adds a todo to the list of completed todos for the player and rewards them with a small amount of experience. If the new xp total is greater than the required amount for the next level, the level will be increased. For example, if the player is level 1 (requires 100XP to level 2) and has 90XP, calling this method will increase the level to 2.
+Adds a todo to the list of completed todos for the player and rewards them with a small amount of experience. If the new xp total is greater than the required amount for the next level, the level will be increased. For example, if the player is level 1 (requires 100XP to level 2) and has 90XP, calling this method will increase the level to 2 and reset the XP back to 0.
 
 **Params**
 ```json
