@@ -1,5 +1,4 @@
-couch_url = "http://todoService:password@localhost:5984"
-[couch_url: _url,
+[couch_url: couch_url,
  database_name: database_name
 ] = Application.get_env(:todos_player_service, TodosPlayerService.Database)
 

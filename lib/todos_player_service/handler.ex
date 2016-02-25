@@ -14,7 +14,8 @@ defmodule TodosPlayerService.Handler do
 
   def get_player(player_id) do
     Database.get!(player_id)
-    |> Models.Player.new
+    |> Models.Player.new()
+    |> Map.merge(%{id: player_id})
   end
 
   def create_player() do

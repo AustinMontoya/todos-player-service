@@ -8,6 +8,7 @@ defmodule TodosPlayerService.HandlerTest do
     %{ id: player_id } = Database.post!(player)
 
     fetched_player = Handler.get_player(player_id)
+    assert fetched_player.id == player_id
     assert fetched_player.level == player.level
     assert fetched_player.xp == player.xp
     assert fetched_player.completed_todos == player.completed_todos
