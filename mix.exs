@@ -3,6 +3,9 @@ defmodule TodosPlayerService.Mixfile do
 
   def project do
     [app: :todos_player_service,
+     compilers: [:thrift | Mix.compilers],
+     thrift_files: Mix.Utils.extract_files(["thrift"], [:thrift]),
+     erlangrc_options: [{:i, "include"}],
      version: "0.0.1",
      elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
@@ -10,23 +13,14 @@ defmodule TodosPlayerService.Mixfile do
      deps: deps]
   end
 
-  # Configuration for the OTP application
-  #
-  # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger]]
+    [applications: [:logger, :httpoison],
+    mod: {TodosPlayerService, []}]
   end
 
-  # Dependencies can be Hex packages:
-  #
-  #   {:mydep, "~> 0.3.0"}
-  #
-  # Or git/path repositories:
-  #
-  #   {:mydep, git: "https://github.com/elixir-lang/mydep.git", tag: "0.1.0"}
-  #
-  # Type "mix help deps" for more examples and options
   defp deps do
-    [{:thrift, github: "pinterest/elixir-thrift", submodules: true}]
+    [{:riffed, github: "pinterest/riffed", tag: "1.0.0", submodules: true},
+     {:httpoison, "~> 0.8.0"},
+     {:poison, "~> 2.1.0"}]
   end
 end

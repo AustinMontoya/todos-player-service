@@ -1,20 +1,40 @@
 # TodosPlayerService
 
-**TODO: Add description**
+This is intended to be a companion service, expanding on the idea of [todos-backend-couchdb](https://github.com/grrizzly/todos-backend-couchdb). It implements a  service for managing players, similar to (albeit much more simplified) a character in the popular productivity app [Habitica](https://habitica.com).
+
+The service works with Thrift using the binary protocol over TCP. Please see the `thrift/` folder for the contract (for now).
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+1. Install [Elixir](https://elixir-lang.org)
+1. Install couchdb and make sure it's running
+1. Create a user named `todoService` and password `password`
+1. Create a database named `players`
+1. Clone this repo and run:
+```shell
+git clone https://github.com/grrizzly/todos-player-service
+cd todos-player-service
+mix deps.get
+iex -S mix
+```
 
-  1. Add todos_player_service to your list of dependencies in `mix.exs`:
+This will start the app and console. From there, you can try out the various modules:
 
-        def deps do
-          [{:todos_player_service, "~> 0.0.1"}]
-        end
+```shell
+> TodosPlayerService.Database.post!(TodosPlayerService.Models.new)
+%{ id: "afe8820a02fa0f202f", version: "ae92d7fa232ae14cfdb"}
 
-  2. Ensure todos_player_service is started before your application:
+> TodosPlayerService.Client.start_link
+:ok
 
-        def application do
-          [applications: [:todos_player_service]]
-        end
+> TodosPlayerService.Client.todoCompleted("afe8820a02fa0f202f", "someFakeId")
+:ok
+```
 
+## Running the tests
+
+```
+mix test
+```
+
+The database must be running for the tests to work. 
