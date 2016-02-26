@@ -18,13 +18,11 @@ defmodule TodosPlayerService.HttpRouter do
   post "/players/:player_id/completed_todos" do
     %{ "id" => todo_id } = conn.params
     :ok = Handler.todo_completed(player_id, todo_id)
-    send_resp(conn, 203, "")
+    send_resp(conn, 200, "")
   end
 
   get "/players/:player_id" do
     player = Handler.get_player(player_id)
     send_resp(conn, 200, Poison.encode!(player))
   end
-
-
 end

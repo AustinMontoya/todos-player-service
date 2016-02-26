@@ -45,7 +45,7 @@ defmodule TodosPlayerService.HttpRouterTest do
     conn = HttpRouter.call(conn, @opts)
 
     assert conn.state == :sent
-    assert conn.status == 203
+    assert conn.status == 200
 
     player = Database.get!(player_id)
     assert player.completed_todos == ["abcd"]
