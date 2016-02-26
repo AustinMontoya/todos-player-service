@@ -1,0 +1,16 @@
+app:
+  image: grrizzly/todos-player-service:latest
+  ports:
+    - "4000:4000"
+    - "1337:1337"
+  links:
+    - couch
+  command: mix run --no-halt
+  environment:
+    - TODOS_PLAYER_SERVICE_COUCH_URL=http://couch:5984
+    - TODOS_PLAYER_SERVICE_DATABASE_NAME=todos
+    - MIX_ENV=prod
+couch:
+  image: grrizzly/todos-backend-couch:latest
+  ports:
+    - "5984:5984"
