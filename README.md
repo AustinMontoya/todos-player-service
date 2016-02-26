@@ -4,13 +4,27 @@ This is intended to be a companion service, expanding on the idea of [todos-back
 
 In addition to the REST interface (described below), this service also works with Thrift using the binary protocol over TCP. Please see the `thrift/` folder for the contract (for now).
 
+## Quickstart
+
+1. Install the [Docker engine](https://www.docker.com/) and make sure it's running
+1. Clone the repo and run:
+```shell
+> git clone https://github.com/grrizzly/todos-player-service
+> cd todos-player-service
+> docker-compose up
+```
+
+The REST API is now available at your docker host IP, port 4000.
+
+The TCP Thrift API is available at your docker host IP, port 1337.
+
 ## REST API
 
 The app listens for HTTP on port 4000.
 
 #### `GET /players/:id`
 
-Fetches a player with the given id. 
+Fetches a player with the given id.
 
 **Returns**
 ```json
@@ -81,4 +95,4 @@ This will start the app and console. From there, you can try out the various mod
 mix test
 ```
 
-The database must be running for the tests to work. 
+The database must be running for the tests to work.
